@@ -1,0 +1,51 @@
+# RETO #1: El problema de la tienda de Don Pepe
+
+## Patrón de Diseño
+* **Categoría**: Comportamiento
+* **Patrón Utilizado**: Strategy (Estrategia)
+
+## Justificación
+El patrón Strategy es ideal para este caso porque:
+* Permite definir diferentes algoritmos de descuento de forma independiente
+* Facilita el cambio de estrategia de descuento en tiempo de ejecución
+* Cada tipo de cliente tiene su propio comportamiento de descuento encapsulado
+* Separa la lógica de cálculo de descuentos de la clase Cliente
+
+## Cómo lo aplico
+1. **Estrategia**: `EstrategiaDescuento` - interfaz que define el contrato para calcular descuentos
+2. **Estrategias Concretas**: `DescuentoClienteNuevo` y `DescuentoClienteFrecuente` - implementaciones específicas con 5% y 10% de descuento respectivamente
+3. **Contexto**: `Cliente` - utiliza una estrategia de descuento sin conocer su implementación
+4. **Cliente**: `Reto1TiendaDonPepe` - configura y utiliza el sistema de ventas
+
+## Principios SOLID aplicados
+* **S**: Cada clase tiene una única responsabilidad (Producto solo almacena datos, Cliente solo gestiona descuentos, CarritoCompras solo maneja el carrito)
+* **O**: Se pueden agregar nuevos tipos de descuento implementando la interfaz sin modificar código existente
+* **L**: Todas las estrategias de descuento son intercambiables sin afectar el funcionamiento
+* **I**: La interfaz EstrategiaDescuento es específica y contiene solo métodos necesarios
+* **D**: Cliente depende de la abstracción EstrategiaDescuento, no de implementaciones concretas
+
+## Polimorfismo
+El polimorfismo se aplica en las diferentes implementaciones de `EstrategiaDescuento`. La clase `Cliente` trabaja con la interfaz común sin conocer qué estrategia específica está utilizando, permitiendo cambiar entre diferentes tipos de descuento de forma transparente.
+
+## Encapsulamiento
+* Todos los atributos son privados y se accede mediante getters
+* La clase `Producto` es inmutable con atributos `final`
+* No hay setters que permitan modificar el estado después de la creación
+
+## Uso de Streams
+```java
+// Calcular subtotal del carrito
+items.stream()
+    .mapToDouble(item -> item.getProducto().getPrecioUnitario() * item.getCantidad())
+    .sum();
+
+// Mostrar productos en el recibo
+carrito.getItems().forEach(item -> {
+    System.out.printf("  - %s - $%,.0f%n",
+        item.getProducto().getNombre(),
+        item.getTotal());
+});
+```
+
+## Ejecución
+Ejecutar el método `main()` desde `Reto1TiendaDonPepe.java` o desde el IDE.
