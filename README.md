@@ -1,4 +1,4 @@
-# RETO #2: El chef de 5 estrellas
+# RETO #2: El chef de 5 estrellas Diego Ortiz - Brandon Peña - Julio Mayorquin 
 
 ## Patrón de Diseño
 - **Categoría:** Creacional
