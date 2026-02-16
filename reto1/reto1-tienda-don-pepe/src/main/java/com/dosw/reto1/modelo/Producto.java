@@ -1,0 +1,20 @@
+package com.dosw.reto1.modelo;
+
+// Clase inmutable - el precio no cambia después de crear el producto
+public class Producto {
+    private final String nombre;
+    private final double precioUnitario;
+
+    public Producto(String nombre, double precioUnitario) {
+        this.nombre = nombre;
+        this.precioUnitario = precioUnitario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+}
